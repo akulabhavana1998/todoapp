@@ -36,7 +36,13 @@ ul {
 li {
   margin-bottom: 10px;
 }
+li.completed {
+  color: #888;
+}
 
+li.completed span {
+  text-decoration: underline;
+}
 
 li span {
   cursor: pointer;

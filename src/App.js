@@ -62,7 +62,9 @@ function App() {
     : todos;
 
   return (
+    
     <div>
+      <center>
       <h1>Todo App</h1>
       <input
         type="text"
@@ -85,7 +87,11 @@ function App() {
         {filteredTodos.map((todo) => (
           <li
             key={todo.id}
-            style={{ textDecoration: todo.completed ? "underline" : "none" }}
+            // 
+            style={{
+              textDecoration: todo.completed ? "none" : "none",
+              color: todo.completed ? "#0000FF" : "#333"
+            }}
           >
             <span onClick={() => handleToggleComplete(todo.id)}>
               {todo.title}
@@ -104,6 +110,7 @@ function App() {
           </li>
         ))}
       </ul>
+      </center>
     </div>
   );
 }
