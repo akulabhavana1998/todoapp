@@ -21,13 +21,13 @@ function App() {
       console.log(error);
     }
   };
-  
+ 
   const handleInputChange = (e) => {
     setNewTask(e.target.value);
    
   };
 
-  const handleAddTask = () => {
+  const handleAddTask =  () => {
     if (newTask.trim() !== "") {
       const newTodo = {
         id: Date.now(),
@@ -36,9 +36,9 @@ function App() {
       };
       setTodos([...todos, newTodo]);
       setNewTask("");
-    
     }
   };
+
 
   const handleToggleComplete = (id) => {
     const updatedTodos = todos.map((todo) =>
@@ -140,6 +140,9 @@ function App() {
 
   ); 
  
+ 
 }
 
 export default App;
+
+
