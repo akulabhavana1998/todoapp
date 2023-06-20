@@ -2,8 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 function App() {
  
   const [todos, setTodos] = useState([]);
@@ -66,56 +64,47 @@ function App() {
 
   return (
     <div style={{ border: "1px solid black", padding: "10px" }}>
-     <div className='card'>
-       <p >TASK STATUS</p>
-        <div className="status-indicator" ></div>
-        <p type="radio">Task completed</p>
-        <div className="status"></div>
-        <span>Task Incomplete</span>
-      </div>
     
-    <h1>Todo App</h1>
-    <input
+     <div className='container'>
+      <div className='app-container'>
+      <h1>Todo App</h1>
+      <input
         type="text"
         value={newTask}
         onChange={handleInputChange}
         placeholder="Enter a new task"    />
-    <button onClick={handleAddTask}>Add Task</button><br/>
+      <button onClick={handleAddTask}>Add Task</button><br/>
       
-      <div className='start'>
-        <label>
-          <input
+        <div className='start'>
+          <label>
+           <input
             type="checkbox"
             checked={showCompleted}
-            onChange={() => setShowCompleted(!showCompleted)}
-          />
-          Show Completed Tasks
-        </label>
-      </div>
-      
+            onChange={() => setShowCompleted(!showCompleted)}/>
+            Show Completed Tasks
+          </label>
+        </div>
+        
       <ul>
         {filteredTodos.map((todo) => (
           <li
             key={todo.id}
-            
-            
             style={{
               textDecoration: todo.completed ? "none" : "none",
               color: todo.completed ? "#0000FF" : "#333",
-             
-            }}
-          >
+            }}>
+          
             <span
-        onClick={() => handleToggleComplete(todo.id)}
-        style={{
-          display: "inline-block",
-          width: "10px",
-          height: "10px",
-          borderRadius: "50%",
-          marginRight: "10px",
-          backgroundColor: todo.completed ? "#0000FF" : "transparent"
-        }}
-      ></span>
+              onClick={() => handleToggleComplete(todo.id)}
+              style={{
+              display: "inline-block",
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%",
+              marginRight: "10px",
+              backgroundColor: todo.completed ? "#0000FF" : "transparent"
+              }}
+            ></span>
             <span onClick={() => handleToggleComplete(todo.id)}>
               {todo.title}
             </span>
@@ -133,12 +122,17 @@ function App() {
           </li>
         ))}
       </ul>
-      
-  
-    
+    </div>
+    <div className="card">
+        <p>TASK STATUS</p>
+        <div className="status-indicator"></div>
+        <p >Task completed</p>
+        <div className="status"></div>
+        <p>Task Incomplete</p>
+      </div>
+    </div>
     </div>
 
-    
   ); 
  
 }
