@@ -3,15 +3,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
- 
   const [todos, setTodos] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [showCompleted, setShowCompleted] = useState(false);
-
+  
   useEffect(() => {
     fetchTodos();
   }, []);
-
+  
   const fetchTodos = async () => {
     try {
       const response = await axios.get(
@@ -22,9 +21,10 @@ function App() {
       console.log(error);
     }
   };
-
+  
   const handleInputChange = (e) => {
     setNewTask(e.target.value);
+   
   };
 
   const handleAddTask = () => {
@@ -36,6 +36,7 @@ function App() {
       };
       setTodos([...todos, newTodo]);
       setNewTask("");
+    
     }
   };
 
@@ -57,7 +58,7 @@ function App() {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
-
+ 
   const filteredTodos = showCompleted
     ? todos.filter((todo) => todo.completed)
     : todos;
@@ -68,14 +69,15 @@ function App() {
      <div className='container'>
       <div className='app-container'>
       <h1>Todo App</h1>
+      <div>
       <input
         type="text"
         value={newTask}
         onChange={handleInputChange}
         placeholder="Enter a new task"    />
       <button onClick={handleAddTask}>Add Task</button><br/>
-      
-        <div className='start'>
+      </div>
+        <div className='checkbox'>
           <label>
            <input
             type="checkbox"
@@ -83,6 +85,7 @@ function App() {
             onChange={() => setShowCompleted(!showCompleted)}/>
             Show Completed Tasks
           </label>
+          <p style={{textDecoration:"bold"}}>Click a task to mark it as Completed</p>
         </div>
         
       <ul>
@@ -94,7 +97,7 @@ function App() {
               color: todo.completed ? "#0000FF" : "#333",
             }}>
           
-            <span
+            <span className='status-icon'
               onClick={() => handleToggleComplete(todo.id)}
               style={{
               display: "inline-block",
@@ -108,6 +111,7 @@ function App() {
             <span onClick={() => handleToggleComplete(todo.id)}>
               {todo.title}
             </span>
+            <div className='button-container'>
             <button onClick={() => handleDeleteTask(todo.id)}>Delete</button>
             <button
               onClick={() => {
@@ -119,6 +123,7 @@ function App() {
             >
               Edit
             </button>
+            </div>
           </li>
         ))}
       </ul>
